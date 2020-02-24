@@ -9,7 +9,11 @@
 # @Time: 2月 24, 2020
 # ---
 
+
 # 定义一个common的类，它的父类是object
+import requests
+
+
 class Common(object):
     # common的构造函数
     def __init__(self):
