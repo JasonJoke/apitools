@@ -20,7 +20,7 @@ class Common(object):
     def __init__(self,url_root):
         # 被测系统的跟路由
         self.url_root = url_root
-    # 封装你自己的get请求，uri是访问路由，params是get请求的参数，如果没有默认为空
+    # 封装get请求，uri是访问路由，params是get请求的参数，如果没有默认为空
     def get(self, uri, params=''):
         # 拼凑访问地址
         url = self.url_root + uri + params
@@ -28,7 +28,7 @@ class Common(object):
         res = requests.get(url)
         # 返回request的Response结果，类型为requests的Response类型
         return res
-    # 封装你自己的post方法，uri是访问路由，params是post请求需要传递的参数，如果没有参数这里为空
+    # 封装post方法，uri是访问路由，params是post请求需要传递的参数，如果没有参数这里为空
     def post(self, uri, params=''):
         # 拼凑访问地址
         url = self.url_root + uri
@@ -41,3 +41,42 @@ class Common(object):
             # 返回request的Response结果，类型为requests的Response类型
             res = requests.post(url)
             return res
+
+
+    def put(self,uri,params=None):
+        '''
+        封装put方法，uri是访问路由，params是put请求需要传递的参数，如果没有参数这里为空
+        :param uri: 访问路由
+        :param params: 传递参数，string类型，默认为None
+        :return: 此次访问的response
+        '''
+        url = self.url_root+uri
+        if params is not None:
+            # 如果有参数，那么通过put方式访问对应的url，并将参数赋值给requests.put默认参数data
+            # 返回request的Response结果，类型为requests的Response类型
+            res = requests.put(url, data=params)
+        else:
+            # 如果无参数，访问方式如下
+            # 返回request的Response结果，类型为requests的Response类型
+            res = requests.put(url)
+
+        return res
+
+
+    def delete(self,uri,params=None):
+        '''
+        封装delete方法，uri是访问路由，params是delete请求需要传递的参数，如果没有参数这里为空
+        :param uri: 访问路由
+        :param params: 传递参数，string类型，默认为None
+        :return: 此次访问的response
+        '''
+        url = self.url_root + uri
+        if params is not None:
+            # 如果有参数，那么通过delete方式访问对应的url，并将参数赋值给requests.delete默认参数data
+            # 返回request的Response结果，类型为requests的Response类型
+            res = requests.delete(url, data=params)
+        else:
+            # 如果无参数，访问方式如下
+            # 返回request的Response结果，类型为requests的Response类型
+            res = requests.delete(url)
+        return res
